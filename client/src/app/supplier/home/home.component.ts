@@ -14,7 +14,8 @@ export class HomeComponent implements OnInit {
   suppliers: any;
   allSupplier: Supplier[] = [];
   p: any;
-
+  isfetching: boolean = true;
+  error = null;
   constructor(
     public supplierService: SupplierService,
     private http: HttpClient) { }
@@ -32,11 +33,15 @@ export class HomeComponent implements OnInit {
 
 
   getAllUser() {
+    this.isfetching = true;
     this.http.get('https://localhost:5001/api/Supplier').subscribe((response) => {
       this.suppliers = response;
-      console.log(response,'response');
+      console.log(response, 'response');
+      this.isfetching = false;
+
     }, (error) => {
       console.log(error);
+      this.error = error.message;
     })
 
   }

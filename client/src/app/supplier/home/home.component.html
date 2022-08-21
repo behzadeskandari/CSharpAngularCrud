@@ -15,7 +15,7 @@
         <th scope="col">LastName</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody *ngIf="!isfetching">
       <tr *ngFor="let item of suppliers | paginate : {itemsPerPage: 4, currentPage: p}">
         <th scope="row">{{ item.id }}</th>
         <td>
@@ -30,7 +30,15 @@
         </td>
       </tr>
     </tbody>
-
+    <tbody *ngIf="isfetching && !error">
+      <tr>Data Is Fetching ....</tr>
+    </tbody>
+    <tbody *ngIf="error">
+      <div class="alert alert-danger">
+        <h1>Error Has Eccoured</h1>
+        <p>{{error}} </p>
+      </div>
+    </tbody>
   </table>
   <div class="d-inline-flex justify-content-center w-100">
     <pagination-controls (pageChange)="p = $event" class="float-right" nextLabel="قبلی" previousLabel="بعدی"></pagination-controls>
