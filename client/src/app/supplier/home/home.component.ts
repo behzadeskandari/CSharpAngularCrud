@@ -13,7 +13,7 @@ declare var window: any;
 export class HomeComponent implements OnInit {
   suppliers: any;
   allSupplier: Supplier[] = [];
-
+  p: any;
 
   constructor(
     public supplierService: SupplierService,

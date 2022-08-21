@@ -8,6 +8,7 @@ import { HomeComponent } from './supplier/home/home.component';
 import { CreateComponent } from './supplier/create/create.component';
 import { FormsModule } from '@angular/forms';
 import { EditComponent } from './supplier/edit/edit.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -17,10 +18,12 @@ import { EditComponent } from './supplier/edit/edit.component';
     EditComponent
   ],
   imports: [
+    NgxPaginationModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]
