@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "f1b27cd6-bc27-46ee-bb52-509052d5fea6": {
+      "ProjectGuid": "f1b27cd6-bc27-46ee-bb52-509052d5fea6",
+      "DisplayName": "API",
+      "ColorIndex": 0
+    }
+  },
+  "NextColorIndex": 1
+}
