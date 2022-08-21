@@ -1,7 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Supplier } from 'src/Model/Supplier';
 import { SupplierService } from '../supplier.service';
 
+
+declare var window: any;
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -9,23 +12,39 @@ import { SupplierService } from '../supplier.service';
 })
 export class HomeComponent implements OnInit {
   suppliers: any;
-  constructor(public supplierService:SupplierService,private http: HttpClient) { }
+  allSupplier: Supplier[] = [];
+
+
+  constructor(
+    public supplierService: SupplierService,
+    private http: HttpClient) { }
+
 
   ngOnInit(): void {
+
+    // this.deleteModal = new window.bootstrap.Modal(
+    //   document.getElementById('deleteModal')
+    // );
+
     this.getAllUser();
   }
 
 
 
   getAllUser() {
-    var ValueHolder = this.http.get('https://localhost:5001/api/Supplier').subscribe((response) => {
+    this.http.get('https://localhost:5001/api/Supplier').subscribe((response) => {
       this.suppliers = response;
       console.log(response,'response');
     }, (error) => {
       console.log(error);
     })
-    return ValueHolder;
 
   }
-
+  Delete(id: number) {
+    console.log(id);
+    console.log('delete');
+    this.supplierService.delete(id).subscribe(res => {
+      this.getAllUser();
+    });
+  }
 }
