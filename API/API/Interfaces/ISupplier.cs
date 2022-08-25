@@ -1,13 +1,16 @@
 ﻿using API.Entities;
+using API.Filter;
+using API.Wrapper;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace API.Interfaces
 {
     public interface ISupplier
     {
-        List<Supplier> GetAll();
+        PagedResponse<List<Supplier>> GetAll(PaginationFilter filter);
         Supplier GetById(int id);
         void Create(Supplier supplier);
 

@@ -1,46 +1,66 @@
 <p>home works!</p>
 
 
-<div class="container">
+<div class="container" *ngIf="!isfetching">
   <div class="row mt-2">
     <div class="col col-md-4 offset-md-4">
       <a class="btn btn-primary" routerLink="/supplier/create">Create</a>
     </div>
   </div>
-  <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">Id</th>
-        <th scope="col">FirstName</th>
-        <th scope="col">LastName</th>
-      </tr>
-    </thead>
-    <tbody *ngIf="!isfetching">
-      <tr *ngFor="let item of suppliers | paginate : {itemsPerPage: 4, currentPage: p}">
-        <th scope="row">{{ item.id }}</th>
-        <td>
+  <div class="table" >
+    <div class="justify-content-around">
+      <span class="col-md-4">Id</span>
+      <span class="col-md-4">FirstName</span>
+      <span class="col-md-4">LastName</span>
+    </div>
+    <!-- | paginate : {itemsPerPage: 10, currentPage: p} ; -->
+    <div  *ngFor="let item of data; let i = index">
+      <div>
+        <span >{{ item.id }}</span>
+        <span>{{ item.firstName }}</span>
+        <span>{{ item.lastName }}</span>
+        <span>
           <a class="btn btn-primary" [routerLink]="['/supplier/edit', item.id]">Edit</a>
-        </td>
-        <td>{{ item.firstName }}</td>
-        <td>{{ item.lastName }}</td>
-        <td>
           <button class="btn btn-danger" (click)="Delete(item.id)">
             delete
           </button>
-        </td>
-      </tr>
-    </tbody>
-    <tbody *ngIf="isfetching && !error">
-      <tr>Data Is Fetching ....</tr>
-    </tbody>
-    <tbody *ngIf="error">
-      <div class="alert alert-danger">
-        <h1>Error Has Eccoured</h1>
-        <p>{{error}} </p>
+        </span>
       </div>
-    </tbody>
-  </table>
-  <div class="d-inline-flex justify-content-center w-100">
-    <pagination-controls (pageChange)="p = $event" class="float-right" nextLabel="قبلی" previousLabel="بعدی"></pagination-controls>
+
+    </div>
+    <div class="d-inline-flex justify-content-center w-100">
+      <ul class="pagination">
+        <li class="page-item" >
+          <a class="page-link">
+            <!-- {{ i }} -->
+            1
+          </a>
+        </li>
+      </ul>
+      <!-- <pagination-controls (pageChange)="p = $event" class="float-right" nextLabel="قبلی" previousLabel="بعدی"></pagination-controls> -->
+    </div>
+  </div>
+  <!-- <input type="text" #localRefrence>
+  <button (click)="buttonCLcik()" class="btn"></button> -->
+</div>
+<div *ngIf="isfetching && !error">
+  <div class="alert alert-info">Data Is Fetching ....</div>
+</div>
+<div *ngIf="error">
+  <div class="alert alert-danger">
+    <h1>Error Has Eccoured</h1>
+    <p>{{error}} </p>
   </div>
 </div>
+<!-- <p appBasicHighlight>
+  Lorem ipsum dolor,
+   sit amet consectetur adipisicing elit. Ad magnam architecto harum tempora
+    aut doloremque officia consequatur neque! Perspiciatis,
+    hic. Eius dolores dolor iure deserunt consectetur in ea velit sapiente.
+
+</p> -->
+<!-- <p appBetterHighlight [defaultColor]="'yellow'" [highlightColor]="'red'">
+  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+   Blanditiis ratione animi recusandae, incidunt mollitia possimus non. Exercitationem accusamus,
+  facere dignissimos nihil quibusdam inventore vitae numquam blanditiis optio sint hic quos?
+</p> -->

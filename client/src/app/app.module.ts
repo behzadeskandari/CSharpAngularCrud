@@ -9,13 +9,17 @@ import { CreateComponent } from './supplier/create/create.component';
 import { FormsModule } from '@angular/forms';
 import { EditComponent } from './supplier/edit/edit.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { BasicHighlightDirective } from './basic-highlight.directive';
+import { BetterHighlightDirective } from './better-highlight.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     CreateComponent,
-    EditComponent
+    EditComponent,
+    BasicHighlightDirective,
+    BetterHighlightDirective
   ],
   imports: [
     NgxPaginationModule,
