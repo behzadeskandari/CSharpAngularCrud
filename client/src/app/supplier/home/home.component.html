@@ -1,12 +1,6 @@
-<p>home works!</p>
-
 
 <div class="container" *ngIf="!isfetching">
-  <div class="row mt-2">
-    <div class="col col-md-4 offset-md-4">
-      <a class="btn btn-primary" routerLink="/supplier/create">Create</a>
-    </div>
-  </div>
+
   <table class="table" >
     <tr class="justify-content-around">
       <th class="col-md-4">Id</th>
@@ -16,9 +10,9 @@
     <!-- | paginate : {itemsPerPage: 10, currentPage: p} ; -->
     <tbody  *ngFor="let item of data; let i = index "  >
       <tr>
-        <th >{{ item.id }}</th>
-        <th>{{ item.firstName }}</th>
-        <th>{{ item.lastName }}</th>
+        <td >{{ item.id }}</td>
+        <td>{{ item.firstName }}</td>
+        <td>{{ item.lastName }}</td>
         <span class="d-inline-flex">
           <a class="btn btn-primary" [routerLink]="['/supplier/edit', item.id]">Edit</a>
           <button class="btn btn-danger" (click)="Delete(item.id)">
@@ -44,6 +38,11 @@
     <button class="btn btn-info m-2" (click)="DecreasePage($event)">
       قبلی
     </button>
+    <div class="row mt-2">
+      <div class="col col-md-4 offset-md-4">
+        <a class="btn btn-primary" routerLink="/supplier/create">Create</a>
+      </div>
+    </div>
     <!-- <pagination-controls class="pagi" (pageChange)="TestFn($event)" nextLabel="قبلی" previousLabel="بعدی" aria-disabled="false">
 
     </pagination-controls> -->
