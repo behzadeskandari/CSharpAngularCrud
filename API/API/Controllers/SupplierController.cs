@@ -62,7 +62,9 @@ namespace API.Controllers
             }
             _supplierService.Create(supplier);
 
-            return GetById(supplier.Id);
+            return  GetById(supplier.Id);//GetById(supplier.Id);
+            ///Must Change it To GetAll With Page Number That Is Sending Via DTO instead of 
+            ///Supplier So We Can Redirect IT TO THE page That Is Created Instead of the FirstPage
         }
 
 

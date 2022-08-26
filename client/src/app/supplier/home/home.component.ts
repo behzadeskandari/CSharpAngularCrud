@@ -66,7 +66,7 @@ export class HomeComponent implements OnInit {
         console.log(error);
         this.error = error.message;
       })
-    console.log(this.page,'page page')
+        console.log(this.page, 'page page');
     // this.http.get(`https://localhost:44315/api/Supplier?PageNumber=${this.page}&PageSize=${this.itemsPerPage}`).subscribe((response) => {
     //   this.suppliers = response;
     //   this.data = this.suppliers.data
