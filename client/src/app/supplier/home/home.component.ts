@@ -21,7 +21,8 @@ export class HomeComponent implements OnInit {
   itemsPerPage: number = 10;
   passenger: any;
   totalItems: any;
-
+  TotalPage: number = 0;
+  pageNumber: number = 0;
   @ViewChild('localRefrence', {static:false}) localRefrence!: ElementRef;
   constructor(
     public supplierService: SupplierService ,
@@ -50,8 +51,12 @@ export class HomeComponent implements OnInit {
     this.isfetching = true;
     this.supplierService.getAllUser(this.page,this.itemsPerPage).subscribe((response) => {
       this.suppliers = response;
-        this.data = this.suppliers.data
+      this.data = this.suppliers.data
+      this.TotalPage = this.suppliers.totalPages;
+      this.pageNumber = this.suppliers.pageNumber
         console.log(response, 'response');
+        console.log(this.TotalPage, 'this.TotalPage');
+        console.log(this.pageNumber,'this.pageNumber');
 
         console.log(this.data, 'data');
         this.isfetching = false;
@@ -79,10 +84,14 @@ export class HomeComponent implements OnInit {
 
   IncreasePage(page : any) {
     console.log(page, 'page');
-    this.page += 1;
-    console.log(this.page, 'this.page');
-    this.getAllUser();
-  }
+    if (this.TotalPage == this.pageNumber) {
+      return;
+    } else {
+      this.page += 1;
+      console.log(this.page, 'this.page');
+      this.getAllUser();
+    }
+   }
 
   DecreasePage(page : any) {
     console.log(page, 'page');
