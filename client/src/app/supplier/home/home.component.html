@@ -7,38 +7,47 @@
       <a class="btn btn-primary" routerLink="/supplier/create">Create</a>
     </div>
   </div>
-  <div class="table" >
-    <div class="justify-content-around">
-      <span class="col-md-4">Id</span>
-      <span class="col-md-4">FirstName</span>
-      <span class="col-md-4">LastName</span>
-    </div>
+  <table class="table" >
+    <tr class="justify-content-around">
+      <th class="col-md-4">Id</th>
+      <th class="col-md-4">FirstName</th>
+      <th class="col-md-4">LastName</th>
+    </tr>
     <!-- | paginate : {itemsPerPage: 10, currentPage: p} ; -->
-    <div  *ngFor="let item of data; let i = index">
-      <div>
-        <span >{{ item.id }}</span>
-        <span>{{ item.firstName }}</span>
-        <span>{{ item.lastName }}</span>
-        <span>
+    <tbody  *ngFor="let item of data; let i = index "  >
+      <tr>
+        <th >{{ item.id }}</th>
+        <th>{{ item.firstName }}</th>
+        <th>{{ item.lastName }}</th>
+        <span class="d-inline-flex">
           <a class="btn btn-primary" [routerLink]="['/supplier/edit', item.id]">Edit</a>
           <button class="btn btn-danger" (click)="Delete(item.id)">
             delete
           </button>
         </span>
-      </div>
+      </tr>
+    </tbody>
+  </table>
+  <div class="d-inline-flex justify-content-center w-100">
+    <!-- <ul class="pagination">
+      <li class="page-item" >
+        <a class="page-link">
+          {{ i }}
+          1
+        </a>
+      </li>
+    </ul> -->
+    <button class="btn btn-info m-2" (click)="IncreasePage($event)">
+        بعدی
+    </button>
 
-    </div>
-    <div class="d-inline-flex justify-content-center w-100">
-      <ul class="pagination">
-        <li class="page-item" >
-          <a class="page-link">
-            <!-- {{ i }} -->
-            1
-          </a>
-        </li>
-      </ul>
-      <!-- <pagination-controls (pageChange)="p = $event" class="float-right" nextLabel="قبلی" previousLabel="بعدی"></pagination-controls> -->
-    </div>
+    <button class="btn btn-info m-2" (click)="DecreasePage($event)">
+      قبلی
+    </button>
+    <!-- <pagination-controls class="pagi" (pageChange)="TestFn($event)" nextLabel="قبلی" previousLabel="بعدی" aria-disabled="false">
+
+    </pagination-controls> -->
+    <!-- <pagination-controls (pageChange)="p = $event" class="float-right" nextLabel="قبلی" previousLabel="بعدی"></pagination-controls> -->
   </div>
   <!-- <input type="text" #localRefrence>
   <button (click)="buttonCLcik()" class="btn"></button> -->

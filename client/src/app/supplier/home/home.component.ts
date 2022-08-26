@@ -17,7 +17,12 @@ export class HomeComponent implements OnInit {
   p: any;
   isfetching: boolean = true;
   error = null;
-  @ViewChild('localRefrence', {static:false}) localRefrence: any ;
+  page: number = 1;
+  itemsPerPage: number = 10;
+  passenger: any;
+  totalItems: any;
+
+  @ViewChild('localRefrence', {static:false}) localRefrence!: ElementRef;
   constructor(
     public supplierService: SupplierService ,
     private http: HttpClient) { }
@@ -43,7 +48,7 @@ export class HomeComponent implements OnInit {
 
   getAllUser() {
     this.isfetching = true;
-    this.supplierService.getAllUser().subscribe((response) => {
+    this.supplierService.getAllUser(this.page,this.itemsPerPage).subscribe((response) => {
       this.suppliers = response;
         this.data = this.suppliers.data
         console.log(response, 'response');
@@ -56,8 +61,8 @@ export class HomeComponent implements OnInit {
         console.log(error);
         this.error = error.message;
       })
-
-    // this.http.get(`https://localhost:44315/api/Supplier?PageNumber=1&PageSize=10`).subscribe((response) => {
+    console.log(this.page,'page page')
+    // this.http.get(`https://localhost:44315/api/Supplier?PageNumber=${this.page}&PageSize=${this.itemsPerPage}`).subscribe((response) => {
     //   this.suppliers = response;
     //   this.data = this.suppliers.data
     //   console.log(response, 'response');
@@ -71,8 +76,26 @@ export class HomeComponent implements OnInit {
     // })
 
   }
-  Delete(id: number) {
 
+  IncreasePage(page : any) {
+    console.log(page, 'page');
+    this.page += 1;
+    console.log(this.page, 'this.page');
+    this.getAllUser();
+  }
+
+  DecreasePage(page : any) {
+    console.log(page, 'page');
+    if (this.page == 1) {
+      return;
+    } else {
+      this.page -= 1;
+      this.getAllUser();
+    }
+    console.log(this.page, 'page');
+   }
+
+  Delete(id: number) {
     console.log(id);
     console.log('delete');
     this.supplierService.delete(id).subscribe(res => {

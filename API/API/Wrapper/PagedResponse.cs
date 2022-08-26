@@ -8,7 +8,7 @@
         public int TotalRecords { get; set; }
 
 
-        public PagedResponse(T data, int pageNumber, int pageSize)
+        public PagedResponse(T data, int pageNumber, int pageSize,int _totalRecords)
         {
             this.PageNumber = pageNumber;
             this.PageSize = pageSize;
@@ -16,6 +16,16 @@
             this.Message = null;
             this.Succeeded = true;
             this.Errors = null;
+            this.TotalRecords = _totalRecords;
+            if(this.TotalRecords % 10 == 0)
+            {
+                this.TotalPages = _totalRecords / 10;
+            }
+            else
+            {
+                this.TotalPages = (_totalRecords / 10) + 1;
+            }
+
         }
     }
 }

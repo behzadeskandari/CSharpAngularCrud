@@ -39,7 +39,7 @@ namespace API.Services
                 .Take(validFilter.PageSize).ToList();
             var totalRecords =  _dbContext.Supplier.Count();
 
-            var item = new PagedResponse<List<Supplier>>(pagedData, validFilter.PageNumber, validFilter.PageSize);
+            var item = new PagedResponse<List<Supplier>>(pagedData, validFilter.PageNumber, validFilter.PageSize, totalRecords);
             //var t = _dbContext.Supplier.ToList();
             
             return item;

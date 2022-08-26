@@ -7,11 +7,11 @@ import { Supplier, SupplierSecond } from 'src/Model/Supplier';
 export class SupplierService {
 
   constructor(private http: HttpClient) { }
-  baseUrl: string = 'https://localhost:5001/api/Supplier';
+  baseUrl: string = 'https://localhost:44315/api/Supplier';
   suppliers: any;
 
-  getAllUser() {
-    return this.http.get(`https://localhost:44315/api/Supplier?PageNumber=1&PageSize=10`);
+  getAllUser(page : number,itemsPerPage: number) {
+    return this.http.get(`https://localhost:44315/api/Supplier?PageNumber=${page}&PageSize=${itemsPerPage}`);
 
   }
   create(payload: SupplierSecond) {
@@ -20,17 +20,17 @@ export class SupplierService {
 
   getById(id:number) {
 
-    let ReturnedValue = this.http.get<Supplier>(`https://localhost:5001/api/Supplier/${id}`);
+    let ReturnedValue = this.http.get<Supplier>(`https://localhost:44315/api/Supplier/${id}`);
     return ReturnedValue;
   }
 
   update(payload: Supplier) {
-    return this.http.put(`https://localhost:5001/api/Supplier/${payload.id}`, payload);
+    return this.http.put(`https://localhost:44315/api/Supplier/${payload.id}`, payload);
   }
 
 
   delete(id:number) {
-    var holder = this.http.delete(`https://localhost:5001/api/Supplier/${id}`);
+    var holder = this.http.delete(`https://localhost:44315/api/Supplier/${id}`);
     console.log(holder,'holder')
     return holder;
   }
