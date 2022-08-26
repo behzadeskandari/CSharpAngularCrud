@@ -28,12 +28,14 @@ export class HomeComponent implements OnInit {
     this.getAllUser();
 
   }
-  buttonCLcik() {
-    console.log(this.localRefrence,'mRef');
 
-    console.log(this.localRefrence?.nativeElement.formAction,'mRef2222');
-    console.log(this.localRefrence?.nativeElement.value,'elemRef');
-  }
+  // buttonCLcik() {
+  //   console.log(this.localRefrence,'mRef');
+
+  //   console.log(this.localRefrence?.nativeElement.formAction,'mRef2222');
+  //   console.log(this.localRefrence?.nativeElement.value,'elemRef');
+  // }
+
   // OnAddServer(inputElm : HTMLInputElement) {
   //   console.log(inputElm.value);
   //   inputElm.value = "behzad eskandari";
@@ -41,18 +43,32 @@ export class HomeComponent implements OnInit {
 
   getAllUser() {
     this.isfetching = true;
-    this.http.get(`https://localhost:44315/api/Supplier?PageNumber=1&PageSize=10`).subscribe((response) => {
+    this.supplierService.getAllUser().subscribe((response) => {
       this.suppliers = response;
-      this.data = this.suppliers.data
-      console.log(response, 'response');
+        this.data = this.suppliers.data
+        console.log(response, 'response');
 
-      console.log(this.data, 'data');
-      this.isfetching = false;
+        console.log(this.data, 'data');
+        this.isfetching = false;
 
-    }, (error) => {
-      console.log(error);
-      this.error = error.message;
-    })
+      },
+      (error) => {
+        console.log(error);
+        this.error = error.message;
+      })
+
+    // this.http.get(`https://localhost:44315/api/Supplier?PageNumber=1&PageSize=10`).subscribe((response) => {
+    //   this.suppliers = response;
+    //   this.data = this.suppliers.data
+    //   console.log(response, 'response');
+
+    //   console.log(this.data, 'data');
+    //   this.isfetching = false;
+
+    // }, (error) => {
+    //   console.log(error);
+    //   this.error = error.message;
+    // })
 
   }
   Delete(id: number) {

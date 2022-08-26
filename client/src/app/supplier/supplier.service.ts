@@ -11,15 +11,7 @@ export class SupplierService {
   suppliers: any;
 
   getAllUser() {
-    // var ValueHolder = this.http.get('https://localhost:5001/api/Supplier').subscribe((response) => {
-    //   this.suppliers = response;
-    //   console.log(response, 'responsegetall');
-    //   console.log(this.suppliers,'responsegetall2222')
-    // }, (error) => {
-    //   console.log(error);
-    // })
-    // console.log(this.suppliers,'uoytside')
-    // return this.suppliers;
+    return this.http.get(`https://localhost:44315/api/Supplier?PageNumber=1&PageSize=10`);
 
   }
   create(payload: SupplierSecond) {
